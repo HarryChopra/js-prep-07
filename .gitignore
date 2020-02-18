@@ -1,0 +1,12 @@
+node_modules/
+.DS_Store
+.cache/
+dist/
+coverage/
+.vscode/
+.env
+.prettierrc
+.eslintrc.json
+package.json
+babel.config.js
+jest.config.js
