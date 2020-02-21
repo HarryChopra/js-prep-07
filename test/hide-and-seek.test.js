@@ -1,7 +1,7 @@
 // Test conversion
 const fs = require('fs');
 const path = require('path');
-const html = fs.readFileSync(path.resolve(__dirname, '../index.html'), 'utf8');
+const html = fs.readFileSync(path.resolve(__dirname, '../hide-and-seek.html'), 'utf8');
 
 describe('index', () => {
 	beforeEach(() => {
