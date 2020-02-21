@@ -4,6 +4,9 @@ const path = require('path');
 const html = fs.readFileSync(path.resolve(__dirname, '../index.html'), 'utf8');
 
 describe('index', () => {
+	beforeEach(() => {
+		document.documentElement.innerHTML = html.toString();
+	});
 	describe('getFirstSelector(selector)', () => {
 		test('returns the first element that matches the selector', () => {
 			expect(getFirstSelector('div').id).toEqual('nested');
