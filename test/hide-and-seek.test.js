@@ -1,49 +1,54 @@
 // Test conversion
+const fs = require('fs');
+const path = require('path');
+const html = fs.readFileSync(path.resolve(__dirname, '../index.html'), 'utf8');
 
 describe('index', () => {
-  describe('getFirstSelector(selector)', () => {
-    it('returns the first element that matches the selector', () => {
-      expect(getFirstSelector('div').id).to.equal('nested')
-      expect(getFirstSelector('.ranked-list')).to.equal(document.querySelector('.ranked-list'))
-    })
-  })
+	describe('getFirstSelector(selector)', () => {
+		test('returns the first element that matches the selector', () => {
+			expect(getFirstSelector('div').id).toEqual('nested');
+			expect(getFirstSelector('.ranked-list')).toEqual(
+				document.querySelector('.ranked-list')
+			);
+		});
+	});
 
-  describe('nestedTarget()', () => {
-    it('pulls a .target out of #nested', () => {
-      expect(nestedTarget()).to.equal(document.querySelector('#nested .target'))
-    })
-  })
+	describe('nestedTarget()', () => {
+		test('pulls a .target out of #nested', () => {
+			expect(nestedTarget()).toEqual(document.querySelector('#nested .target'));
+		});
+	});
 
-  describe('deepestChild()', () => {
-    it('returns the most deeply nested child in #grand-node', () => {
-      console.log(deepestChild().innerHTML)
-      expect(deepestChild()).to.equal(document.querySelector('#grand-node div div div div'))
-    })
-  })
+	describe('deepestChild()', () => {
+		test('returns the most deeply nested child in #grand-node', () => {
+			console.log(deepestChild().innerHTML);
+			expect(deepestChild()).toEqual(document.querySelector('#grand-node div div div div'));
+		});
+	});
 
-  describe('increaseRankBy(n)', () => {
-    it('increases ranks in .ranked-list by n', () => {
-      increaseRankBy(3)
+	describe('increaseRankBy(n)', () => {
+		test('increases ranks in .ranked-list by n', () => {
+			increaseRankBy(3);
 
-      const rankedLists = document.querySelectorAll('.ranked-list')
-      const firstList = rankedLists[0]
-      const secondList = rankedLists[1]
+			const rankedLists = document.querySelectorAll('.ranked-list');
+			const firstList = rankedLists[0];
+			const secondList = rankedLists[1];
 
-      let children = firstList.children
-      let start = 1
+			let children = firstList.children;
+			let start = 1;
 
-      expect(children.length).to.equal(2);
-      for (let i = 0, l = children.length; i < l; i++) {
-        expect(parseInt(children[i].innerHTML)).to.equal(start + i + 3)
-      }
+			expect(children.length).toEqual(2);
+			for (let i = 0, l = children.length; i < l; i++) {
+				expect(parseInt(children[i].innerHTML)).toEqual(start + i + 3);
+			}
 
-      children = secondList.children
-      start = 12
+			children = secondList.children;
+			start = 12;
 
-      expect(children.length).to.equal(3);
-      for (let i = 0, l = children.length; i < l; i++) {
-        expect(parseInt(children[i].innerHTML)).to.equal(start - i + 3)
-      }
-    })
-  })
-})
+			expect(children.length).toEqual(3);
+			for (let i = 0, l = children.length; i < l; i++) {
+				expect(parseInt(children[i].innerHTML)).toEqual(start - i + 3);
+			}
+		});
+	});
+});
