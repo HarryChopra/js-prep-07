@@ -7,6 +7,10 @@ describe('index', () => {
 	beforeEach(() => {
 		document.documentElement.innerHTML = html.toString();
 	});
+	afterEach(() => {
+		// restore the original func after test
+		jest.resetModules();
+	});
 	describe('getFirstSelector(selector)', () => {
 		test('returns the first element that matches the selector', () => {
 			expect(getFirstSelector('div').id).toEqual('nested');
